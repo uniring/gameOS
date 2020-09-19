@@ -35,6 +35,7 @@ id: root
     // Load settings
     property var settings: {
         return {
+            isHandheld: (root.width == 640) ? true : false,
             PlatformView:                  api.memory.has("Game View") ? api.memory.get("Game View") : "Grid",
             GridThumbnail:                 api.memory.has("Grid Thumbnail") ? api.memory.get("Grid Thumbnail") : "Dynamic Wide",
             GridColumns:                   api.memory.has("Number of columns") ? api.memory.get("Number of columns") : "3",
