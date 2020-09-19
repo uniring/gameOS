@@ -50,8 +50,8 @@ id: root
         id: platformlogo
 
             anchors {
-                top: parent.top; topMargin: vpx(20)
-                bottom: parent.bottom; bottomMargin: vpx(20)
+                top: parent.top; topMargin:  (settings.isHandheld) ? vpx(20) : vpx(20)
+                bottom: parent.bottom; bottomMargin:  (settings.isHandheld) ? vpx(0) : vpx(20)
                 left: parent.left; leftMargin: globalMargin
             }
             fillMode: Image.PreserveAspectFit
@@ -89,7 +89,7 @@ id: root
             
             color: theme.text
             font.family: titleFont.name
-            font.pixelSize: vpx(30)
+            font.pixelSize: (settings.isHandheld) ? vpx(60) : vpx(30)
             font.bold: true
             horizontalAlignment: Text.AlignHLeft
             verticalAlignment: Text.AlignVCenter
@@ -115,7 +115,7 @@ id: root
                 onSelectedChanged: if (!selected && searchActive) toggleSearch();
 
                 width: (searchActive || searchTerm != "") ? vpx(250) : height
-                height: vpx(40)
+                height: (settings.isHandheld) ? vpx(60) : vpx(40)
 
                 Behavior on width {
                     PropertyAnimation { duration: 200; easing.type: Easing.OutQuart; easing.amplitude: 2.0; easing.period: 1.5 }
@@ -134,7 +134,7 @@ id: root
                 id: searchicon
 
                     width: height
-                    height: vpx(18)
+                    height: (settings.isHandheld) ? vpx(34) : vpx(18)
                     anchors { 
                         left: parent.left; leftMargin: vpx(11)
                         top: parent.top; topMargin: vpx(10)
@@ -155,7 +155,7 @@ id: root
                     color: theme.text
                     focus: searchbar.selected && searchActive
                     font.family: subtitleFont.name
-                    font.pixelSize: vpx(18)
+                    font.pixelSize: (settings.isHandheld) ? vpx(36) : vpx(18)
                     clip: true
                     text: searchTerm
                     onTextEdited: {
@@ -216,7 +216,7 @@ id: root
                                     
                     color: theme.text
                     font.family: subtitleFont.name
-                    font.pixelSize: vpx(18)
+                    font.pixelSize: (settings.isHandheld) ? vpx(36) : vpx(18)
                     anchors.centerIn: parent
                     elide: Text.ElideRight
                 }
@@ -253,7 +253,7 @@ id: root
                                     
                     color: theme.text
                     font.family: subtitleFont.name
-                    font.pixelSize: vpx(18)
+                    font.pixelSize: (settings.isHandheld) ? vpx(36) : vpx(18)
                     anchors.centerIn: parent
                     elide: Text.ElideRight
                 }
@@ -291,7 +291,7 @@ id: root
                                     
                     color: theme.text
                     font.family: subtitleFont.name
-                    font.pixelSize: vpx(18)
+                    font.pixelSize: (settings.isHandheld) ? vpx(36) : vpx(18)
                     anchors.centerIn: parent
                     elide: Text.ElideRight
                 }

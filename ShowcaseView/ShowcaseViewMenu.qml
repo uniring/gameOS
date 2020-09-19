@@ -58,7 +58,7 @@ id: root
                 collection.itemHeight = collection.itemWidth;
                 break;
             case "Tall":
-                collection.itemWidth = (settings.isHandheld) ? (width / 4.0) : (width / 8.0);
+                collection.itemWidth = (settings.isHandheld) ? (width / 3.5) : (width / 8.0);
                 collection.itemHeight = collection.itemWidth / settings.TallRatio;
                 break;
             case "Wide":
@@ -209,7 +209,7 @@ id: root
     id: header
 
         width: parent.width
-        height: vpx(70)
+        height: (settings.isHandheld) ? vpx(110) : vpx(70)
         z: 10
         Image {
             id: logo
@@ -229,7 +229,7 @@ id: root
 
             width: height
             height: (settings.isHandheld) ? vpx(80) : vpx(40)
-            anchors { right: parent.right; rightMargin: globalMargin }
+            anchors { right: parent.right; rightMargin: globalMargin;}
             color: focus ? theme.accent : "white"
             radius: height/2
             opacity: focus ? 1 : 0.2
