@@ -383,7 +383,7 @@ id: root
             left: parent.left; 
             right: parent.right
         }
-        height: vpx(75)
+        height: (settings.isHandheld) ? vpx(150) : vpx(75)
 
         // Platform logo
         Image {
@@ -554,7 +554,9 @@ id: root
 
         HorizontalCollection {
         id: media
-
+        
+            property int handheldRatio : (settings.isHandheld) ? 2 : 0
+            
             width: root.width - vpx(70) - globalMargin
             height: ((root.width - globalMargin * 2) / 6.0) + vpx(60)
             title: "Media"
@@ -590,12 +592,14 @@ id: root
         // More by publisher
         HorizontalCollection {
         id: list1
-
+            
+            property int handheldRatio : (settings.isHandheld) ? 2 : 0
+            
             property bool selected: ListView.isCurrentItem
             focus: selected
             width: root.width - vpx(70) - globalMargin
             height: itemHeight + vpx(60)
-            itemWidth: (root.width - globalMargin * 2) / 4.0
+            itemWidth: (root.width - globalMargin * 2) / (4 - handheldRatio)
             itemHeight: itemWidth * settings.WideRatio
 
             title: game ? "More games by " + game.publisher : ""
@@ -607,11 +611,13 @@ id: root
         HorizontalCollection {
         id: list2
 
+             property int handheldRatio : (settings.isHandheld) ? 4 : 0
+
             property bool selected: ListView.isCurrentItem
             focus: selected
             width: root.width - vpx(70) - globalMargin
             height: itemHeight + vpx(60)
-            itemWidth: (root.width - globalMargin * 2) / 8.0
+            itemWidth: (root.width - globalMargin * 2) / (8 - handheldRatio)
             itemHeight: itemWidth / settings.TallRatio
 
             title: game ? "More " + game.genreList[0].toLowerCase() + " games" : ""
