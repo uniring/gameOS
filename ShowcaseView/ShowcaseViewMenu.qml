@@ -412,10 +412,10 @@ id: root
             width: root.width
             height: (settings.isHandheld) ? vpx(350) + globalMargin * 2 : vpx(100) + globalMargin * 2
             anchors {
-                left: parent.left; leftMargin: globalMargin
+                left: parent.left; leftMargin:  globalMargin
                 right: parent.right; rightMargin: globalMargin
             }
-            spacing: vpx(10)
+            spacing: (settings.isHandheld) ? vpx(50) : vpx(10)
             orientation: ListView.Horizontal
             preferredHighlightBegin: vpx(0)
             preferredHighlightEnd: parent.width - vpx(60)
@@ -454,7 +454,7 @@ id: root
 
                     anchors.fill: parent
                     anchors.centerIn: parent
-                    anchors.margins: vpx(15)
+                    anchors.margins: (settings.isHandheld) ? vpx(50) : vpx(15)
                     source: "../assets/images/logospng/" + Utils.processPlatformName(modelData.shortName) + ".png"
                     sourceSize { width: 256; height: 128 }
                     fillMode: Image.PreserveAspectFit
