@@ -234,7 +234,7 @@ id: root
             
             color: theme.text
             font.family: titleFont.name
-            font.pixelSize: vpx(30)
+            font.pixelSize: (settings.isHandheld) ? vpx(60) : vpx(30)
             font.bold: true
             horizontalAlignment: Text.AlignHLeft
             verticalAlignment: Text.AlignVCenter
@@ -279,7 +279,7 @@ id: root
                     text: modelData.pageName
                     color: theme.text
                     font.family: subtitleFont.name
-                    font.pixelSize: vpx(22)
+                    font.pixelSize: (settings.isHandheld) ? vpx(40) : vpx(22)
                     font.bold: true
                     verticalAlignment: Text.AlignVCenter
                     opacity: selected ? 1 : 0.2
@@ -287,7 +287,7 @@ id: root
                     width: contentWidth
                     height: parent.height
                     anchors {
-                        left: parent.left; leftMargin: vpx(25)
+                        left: parent.left; leftMargin: (settings.isHandheld) ? vpx(0) : vpx(25)
                     }
                 }
 
@@ -395,7 +395,7 @@ id: root
                     text: settingName + ": "
                     color: theme.text
                     font.family: subtitleFont.name
-                    font.pixelSize: vpx(20)
+                    font.pixelSize: (settings.isHandheld) ? vpx(32) : vpx(20)
                     verticalAlignment: Text.AlignVCenter
                     opacity: selected ? 1 : 0.2
 
@@ -412,7 +412,7 @@ id: root
                     text: settingList[savedIndex]; 
                     color: theme.text
                     font.family: subtitleFont.name
-                    font.pixelSize: vpx(20)
+                    font.pixelSize: (settings.isHandheld) ? vpx(32) : vpx(20)
                     verticalAlignment: Text.AlignVCenter
                     opacity: selected ? 1 : 0.2
 
