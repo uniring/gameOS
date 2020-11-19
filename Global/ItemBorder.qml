@@ -85,7 +85,7 @@ id: root
             color: theme.text
             font {
                 family: subtitleFont.name
-                pixelSize: vpx(14)
+                pixelSize: (settings.isHandheld) ? vpx(24) : vpx(14)
                 bold: true
             }
             elide: Text.ElideRight

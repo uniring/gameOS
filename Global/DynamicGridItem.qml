@@ -181,11 +181,11 @@ id: root
     id: platformname
 
         text: modelData.title
-        anchors { fill: parent; margins: vpx(10) }
+        anchors { fill: parent; margins: (settings.isHandheld) ? vpx(20) : vpx(10) }
         color: "white"
         scale: selected ? 1.1 : 1
         Behavior on opacity { NumberAnimation { duration: 100 } }
-        font.pixelSize: vpx(18)
+        font.pixelSize: (settings.isHandheld) ? vpx(32) : vpx(18)
         font.family: subtitleFont.name
         font.bold: true
         style: Text.Outline; styleColor: theme.main

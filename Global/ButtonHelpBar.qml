@@ -13,7 +13,7 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
-
+// (settings.isHandheld) ? vpx(40) : vpx(18)
 import QtQuick 2.0
 import QtQuick.Layouts 1.11
 
@@ -24,16 +24,19 @@ id: root
         id: buttonhelpDelegate
         Row {
             spacing: 10
+            anchors {
+                bottom: (settings.isHandheld) ? parent.bottom : vpx(0); bottomMargin: (settings.isHandheld) ? vpx(30) : vpx(0)
+            }
             Image {
                 source: "../assets/images/controller/" + processButtonArt(button) + ".png"
-                width: vpx(30)
-                height: vpx(30)
+                width: (settings.isHandheld) ? vpx(60) : vpx(30)
+                height: (settings.isHandheld) ? vpx(60) : vpx(30)
                 asynchronous: true
             }
             Text { 
                 text: name
                 font.family: subtitleFont.name
-                font.pixelSize: vpx(16)
+                font.pixelSize: (settings.isHandheld) ? vpx(32) : vpx(16)
                 color: theme.text
                 height: parent.height
                 verticalAlignment: Text.AlignVCenter
@@ -47,7 +50,7 @@ id: root
         delegate: buttonhelpDelegate
         orientation: ListView.Horizontal
         layoutDirection: Qt.RightToLeft
-        spacing: vpx(20)
+        spacing: (settings.isHandheld) ? vpx(40) : vpx(20)
     }
 
     visible: currentHelpbarModel ? true : false
@@ -58,16 +61,16 @@ id: root
         var buttonModel;
         switch (button) {
             case "accept":
-            buttonModel = api.keys.accept;
+            buttonModel = (settings.isHandheld) ? api.keys.cancel : api.keys.accept;
             break;
             case "cancel":
-            buttonModel = api.keys.cancel;
+            buttonModel = (settings.isHandheld) ? api.keys.accept : api.keys.cancel;
             break;
             case "filters":
-            buttonModel = api.keys.filters;
+            buttonModel = (settings.isHandheld) ? api.keys.details : api.keys.filters;
             break;
             case "details":
-            buttonModel = api.keys.details;
+            buttonModel = (settings.isHandheld) ? api.keys.filters : api.keys.details;
             break;
             case "nextPage":
             buttonModel = api.keys.nextPage;

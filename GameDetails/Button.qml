@@ -24,6 +24,7 @@ id: root
     property alias icon: buttonicon.source
     property alias buttonWidth: container.width
     property real buttonMargin: vpx(25)
+    property int handHeldRatio: (settings.isHandheld) ? 2 : 0
     width: container.width
 
     signal activated
@@ -32,9 +33,9 @@ id: root
     Rectangle {
     id: container
 
-        width: (buttonlabel.text !== "") ? buttonlabel.x + buttonlabel.contentWidth + buttonMargin : height
+        width: (buttonlabel.text !== "") ? buttonlabel.x + buttonlabel.contentWidth + buttonMargin * handHeldRatio : height
         Behavior on width { NumberAnimation { duration: 100 } }
-        height: vpx(50)
+        height: (settings.isHandheld) ? vpx(100) : vpx(50)
         color: selected ? theme.accent : "transparent"
         radius: height/2
         border.width: selected ? 0 : 2
@@ -64,7 +65,7 @@ id: root
         id: buttonlabel
 
             font.family: subtitleFont.name
-            font.pixelSize: vpx(16)
+            font.pixelSize: (settings.isHandheld) ? vpx(78) : vpx(16);
             font.bold: true
             color: theme.text
             //opacity: selected ? 1 : 0.2

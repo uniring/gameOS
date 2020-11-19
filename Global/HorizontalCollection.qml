@@ -41,11 +41,11 @@ id: root
 
         text: collectionData.name
         font.family: subtitleFont.name
-        font.pixelSize: vpx(18)
+        font.pixelSize: (settings.isHandheld) ? vpx(44) : vpx(18)
         font.bold: true
         color: theme.text
         opacity: root.focus ? 1 : 0.2
-        anchors { left: parent.left; leftMargin: vpx(10) }
+        anchors { left: parent.left; leftMargin: vpx(10); }
     }
 
     ListView {
@@ -58,7 +58,7 @@ id: root
             right: parent.right;
             bottom: parent.bottom
         }
-        spacing: vpx(5)
+        spacing: (settings.isHandheld) ? vpx(15) : vpx(5)
         orientation: ListView.Horizontal
         preferredHighlightBegin: vpx(0)
         preferredHighlightEnd: parent.width - vpx(60)

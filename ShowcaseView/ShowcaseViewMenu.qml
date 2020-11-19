@@ -54,16 +54,16 @@ id: root
 
         switch (collectionThumbnail) {
             case "Square":
-                collection.itemWidth = (width / 6.0);
+                collection.itemWidth = (settings.isHandheld) ? (width / 4.0) : (width / 6.0);
                 collection.itemHeight = collection.itemWidth;
                 break;
             case "Tall":
-                collection.itemWidth = (width / 8.0);
+                collection.itemWidth = (settings.isHandheld) ? (width / 3.5) : (width / 8.0);
                 collection.itemHeight = collection.itemWidth / settings.TallRatio;
                 break;
             case "Wide":
             default:
-                collection.itemWidth = (width / 4.0);
+                collection.itemWidth = (settings.isHandheld) ? (width / 3.0) : (width / 4.0);
                 collection.itemHeight = collection.itemWidth * settings.WideRatio;
                 break;
             
@@ -124,7 +124,7 @@ id: root
     id: ftueContainer
 
         width: parent.width
-        height: vpx(360)
+        height: (settings.isHandheld) ? vpx(120) : vpx(360)
         visible: ftue
         opacity: {
             switch (mainList.currentIndex) {
@@ -209,12 +209,11 @@ id: root
     id: header
 
         width: parent.width
-        height: vpx(70)
+        height: (settings.isHandheld) ? vpx(110) : vpx(70)
         z: 10
         Image {
-        id: logo
-
-            width: vpx(150)
+            id: logo
+            width: (settings.isHandheld) ? vpx(320) : vpx(150)
             anchors { left: parent.left; leftMargin: globalMargin }
             source: "../assets/images/gameOS-logo.png"
             sourceSize { width: 150; height: 100}
@@ -229,8 +228,8 @@ id: root
         id: settingsbutton
 
             width: height
-            height: vpx(40)
-            anchors { right: parent.right; rightMargin: globalMargin }
+            height: (settings.isHandheld) ? vpx(80) : vpx(40)
+            anchors { right: parent.right; rightMargin: globalMargin;}
             color: focus ? theme.accent : "white"
             radius: height/2
             opacity: focus ? 1 : 0.2
@@ -270,7 +269,7 @@ id: root
         id: settingsicon
 
             width: height
-            height: vpx(24)
+            height: (settings.isHandheld) ? vpx(42) : vpx(24)
             anchors.centerIn: settingsbutton
             smooth: true
             asynchronous: true
@@ -289,7 +288,7 @@ id: root
             property bool selected: ListView.isCurrentItem
             focus: selected
             width: parent.width
-            height: vpx(360)
+            height: (settings.isHandheld) ? vpx(140) : vpx(360)
             spacing: vpx(0)
             orientation: ListView.Horizontal
             clip: true
@@ -411,12 +410,12 @@ id: root
             property int myIndex: ObjectModel.index
             focus: selected
             width: root.width
-            height: vpx(100) + globalMargin * 2
+            height: (settings.isHandheld) ? vpx(350) + globalMargin * 2 : vpx(100) + globalMargin * 2
             anchors {
-                left: parent.left; leftMargin: globalMargin
+                left: parent.left; leftMargin:  globalMargin
                 right: parent.right; rightMargin: globalMargin
             }
-            spacing: vpx(10)
+            spacing: (settings.isHandheld) ? vpx(50) : vpx(10)
             orientation: ListView.Horizontal
             preferredHighlightBegin: vpx(0)
             preferredHighlightEnd: parent.width - vpx(60)
@@ -440,7 +439,7 @@ id: root
             model: api.collections//Utils.reorderCollection(api.collections);
             delegate: Rectangle {
                 property bool selected: ListView.isCurrentItem && platformlist.focus
-                width: (root.width - globalMargin * 2) / 7.0
+                width: (settings.isHandheld) ? (root.width - globalMargin * 2) / 2.5 : (root.width - globalMargin * 2) / 7.0
                 height: width * settings.WideRatio
                 color: selected ? theme.accent : theme.secondary
                 scale: selected ? 1.1 : 1
@@ -455,7 +454,7 @@ id: root
 
                     anchors.fill: parent
                     anchors.centerIn: parent
-                    anchors.margins: vpx(15)
+                    anchors.margins: (settings.isHandheld) ? vpx(50) : vpx(15)
                     source: "../assets/images/logospng/" + Utils.processPlatformName(modelData.shortName) + ".png"
                     sourceSize { width: 256; height: 128 }
                     fillMode: Image.PreserveAspectFit
